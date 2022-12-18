@@ -31,7 +31,7 @@ function App() {
     <TopBar toggleTheme={()=>setIsDarkTheme(prev => (!prev))}/>
       <Routes>
         <Route path='/' element={<Landing/>}/>
-        <Route path='/home' element={<Home/>}/>
+        <Route path='/home/*' element={<Home/>}/>
         <Route path='/interlude/:iid' element={<Interlude/>}/>
       </Routes>
       </ThemeProvider>

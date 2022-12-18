@@ -1,5 +1,6 @@
 import { useContext, useState } from "react"
 import { UserContext } from "../../contexts/UserContext"
+import { useNavigate } from "react-router-dom"
 
 import { Box} from "@mui/system"
 import { Paper, Container, Typography, Button, Fab } from "@mui/material"
@@ -12,6 +13,8 @@ export default function InterludeMenu() {
     open: false,
     anchorEl: null
   })
+  const {userDoc} = useContext(UserContext)
+  const navigate=useNavigate()
 
   const handleNewClick = (e) =>{
     setNewMenu ({
@@ -43,13 +46,10 @@ export default function InterludeMenu() {
       <Container sx={{
         p:3
       }}>
-        <Button sx={{backgroundColor:'primary.light', mb:1}} fullWidth>Placeholder Placeholder</Button>
-        <Button sx={{backgroundColor:'primary.light', mb:1}} fullWidth>Placeholder || Placeholder</Button>
-        <Button sx={{backgroundColor:'primary.light', mb:1}} fullWidth>Placeholder Placeholder</Button>
-        <Button sx={{backgroundColor:'primary.light', mb:1}} fullWidth>Placeholder Placeholder</Button>
-        <Button sx={{backgroundColor:'primary.light', mb:1}} fullWidth>Placeholder Placeholder</Button>
-        <Button sx={{backgroundColor:'primary.light', mb:1}} fullWidth>Placeholder Placeholder</Button>
-        <Button sx={{backgroundColor:'primary.light', mb:1}} fullWidth>Placeholder Placeholder</Button>
+
+        {userDoc.createdInterludes.map((interlude)=>
+         <Button onClick={()=>navigate(`/home/interlude/${interlude.id}`)} sx={{backgroundColor:'primary.light', mb:1}} fullWidth>{interlude.title}</Button>)}
+    
         
        
       </Container>

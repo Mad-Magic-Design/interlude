@@ -1,17 +1,24 @@
 import { createContext } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {getInterlude, createInterlude, updateField, createAct, updateAct} from '../network/interlude'
 
 export const InterludeContext = createContext ()
 
 export const InterludeProvider = (props) =>{
-    const [interludeDoc, setInterludeDoc] = useState({
+   /* const [interludeDoc, setInterludeDoc] = useState({
         id: '',
         acts: [],
         creator: '',
         partyName: '',
         isOpen: true,
-    })
+    })*/
+
+    const [interludeDoc, setInterludeDoc] = useState(props.data)
+   
+
+    useEffect(()=>{
+        setInterludeDoc(props.data)
+    }, [props.data])
 
     const getInterludeDoc = () =>{
         getInterlude(interludeDoc.id)
@@ -36,6 +43,7 @@ export const InterludeProvider = (props) =>{
 
     return (
         <InterludeContext.Provider value ={{
+           interludeDoc,
             getInterlude,
             updateInterludeAct,
             pushAct,

@@ -1,24 +1,18 @@
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function NewMenu(props) {
-  const [anchorEl, setAnchorEl] = useState(props.anchorEl);
-  const open = Boolean(anchorEl);
-  
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const navigate = useNavigate()
 
-  console.log('i exist')
 
   return (
       <Menu
         id="demo-positioned-menu"
         aria-labelledby="demo-positioned-button"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
+        anchorEl={props.anchorEl}
+        open={true}
+        onClose={()=>props.handleClose()}
         anchorOrigin={{
           vertical: 'top',
           horizontal: 'left',
@@ -28,8 +22,8 @@ export default function NewMenu(props) {
           horizontal: 'left',
         }}
       >
-        <MenuItem onClick={handleClose}>Create New Interlude</MenuItem>
-        <MenuItem onClick={handleClose}>Join Interlude</MenuItem>
+        <MenuItem onClick={()=>navigate('/home/new')}>Create New Interlude</MenuItem>
+        <MenuItem onClick={()=>navigate('/home/join')}>Join Interlude</MenuItem>
         
       </Menu>
   );

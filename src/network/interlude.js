@@ -2,7 +2,7 @@ import axios from "axios";
 const address= process.env.API_ADDRESS
 
 const axiosClient = axios.create({
-    baseURL: `https://api.example.com`,
+  baseURL: `http://localhost:5000`,
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -10,24 +10,24 @@ const axiosClient = axios.create({
   });
 
   export function getInterlude (iid){
-    return axiosClient.get(`${address}/interlude/${iid}`)
+    return axiosClient.get(`/interlude/${iid}`)
   }
   
-  export function createInterlude (partyName, creator, userId){
-    return axiosClient.post(`${address}/interlude`, {
-      partyName, creator, userId})
+  export function createInterlude (partyName, title, creator, userId){
+    return axiosClient.post(`/interlude/create`, {
+      partyName, title, creator, userId})
   }
   export function updateField (iid, field, info){
-    return axiosClient.put(`${address}/interlude/update/${iid}`, {
+    return axiosClient.put(`/interlude/update/${iid}`, {
       field, info
         }
       )}
   export function createAct (iid, act){
-    return axiosClient.post(`${address}/interlude/createact/${iid}`, {
+    return axiosClient.post(`/interlude/createact/${iid}`, {
       act})
   }
   export function updateAct (iid, act, index){
-    return axiosClient.put(`${address}/interlude/updateact/${iid}`, {
+    return axiosClient.put(`/interlude/updateact/${iid}`, {
       act, index
         }
       )}
