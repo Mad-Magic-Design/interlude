@@ -45,6 +45,24 @@ export default function NewInterlude() {
               id="title"
               autoComplete="title"
             />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="description"
+              label="Description of the time the Interlude takes place"
+              id="description"
+              autoComplete="description"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="prompt"
+              label="Prompt to spur player's acts"
+              id="prompt"
+              autoComplete="prompt"
+            />
             <Button
               type="submit"
               fullWidth
