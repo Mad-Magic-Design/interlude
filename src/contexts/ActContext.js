@@ -36,6 +36,14 @@ export const ActProvider = (props) =>{
         setActIndex(props.index)
     }, [props.index])
 
+    const updateActField = (field, data) =>{
+        let newStage = actDoc.stages
+        if (field==='rollInstruction') newStage = 'rollAvail' 
+
+        const newAct = {...actDoc, [field]:data, stages:newStage}
+        setActDoc(newAct)
+        props.updateDoc(newAct, actIndex)
+    }
 
 
     return (

@@ -12,7 +12,7 @@ import { Container, Typography, Paper } from "@mui/material"
 
 
 export default function Interlude() {
-    const {interludeDoc} = useContext(InterludeContext)
+    const {interludeDoc, updateInterludeAct} = useContext(InterludeContext)
     const {userDoc} = useContext(UserContext)
     const isOwned = userDoc.createdInterludes.map(inter=>inter.id).includes(interludeDoc._id)
 
@@ -37,8 +37,8 @@ export default function Interlude() {
     </Container>
     <Container>
       <Paper>
-        {interludeDoc.acts.map(act=> 
-          <ActProvider data={act}><Act/></ActProvider>
+        {interludeDoc.acts.map((act, index)=> 
+          <ActProvider updateDoc={updateInterludeAct} index={index} data={act}><Act isOwned={isOwned}/></ActProvider>
           )}
       </Paper>
     </Container>
