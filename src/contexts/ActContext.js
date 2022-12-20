@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 
 export const ActContext = createContext()
 
-export const ActProvider = (data, props) =>{
+export const ActProvider = (props) =>{
     const defaultActDoc = {
         creator: '',
-        state: 'new',
+        creatorId: '',
+        stages: 'new', //new, rollAvail, rolled, completed
         action: '',
         rollInstruction: {
+            description:'', 
             type: 'skill',
             DC: 15,
         },
@@ -22,14 +24,19 @@ export const ActProvider = (data, props) =>{
         },
         dmSays: '',
         playerSays: '',
-        index: 1,
     }
     
-    const [actDoc, setActDoc] = useState(data)
+    const [actDoc, setActDoc] = useState(props.data)
+    const [actIndex, setActIndex] = useState(props.index)
 
     useEffect(()=>{
-        setActDoc(data)
-    }, [data])
+        setActDoc(props.data)
+    }, [props.data])
+    useEffect(()=>{
+        setActIndex(props.index)
+    }, [props.index])
+
+
 
     return (
         <ActContext.Provider value={{

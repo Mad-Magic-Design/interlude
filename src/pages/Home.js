@@ -12,8 +12,8 @@ import InterludeWrapper from '../features/interlude/InterludeWrapper'
 export default function Home() {
      
   return (
-    <Box sx={{p:3}}>
-      <Container sx={{p:3}}>
+    <Box sx={{p:2}}>
+      <Container sx={{}}>
           <Routes>
               <Route path='/' element={<InterludeMenu/>}/>
               <Route path='/new' element={<NewInterlude/>}/>

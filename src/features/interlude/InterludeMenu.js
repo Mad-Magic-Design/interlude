@@ -49,7 +49,8 @@ export default function InterludeMenu() {
 
         {userDoc.createdInterludes.map((interlude)=>
          <Button onClick={()=>navigate(`/home/interlude/${interlude.id}`)} sx={{backgroundColor:'primary.light', mb:1}} fullWidth>{interlude.title}</Button>)}
-    
+        {userDoc.joinedInterludes.map((interlude)=>
+         <Button onClick={()=>navigate(`/home/interlude/${interlude.id}`)} sx={{backgroundColor:'primary.dark', mb:1}} fullWidth>{interlude.title}</Button>)}
         
        
       </Container>

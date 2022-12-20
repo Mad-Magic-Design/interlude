@@ -14,7 +14,7 @@ export default function NewInterlude() {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log('userDoc.id', userDoc.id)
-        createInterlude(data.get('partyName'), data.get('title'), userDoc.username, userDoc.id )
+        createInterlude(data.get('partyName'), data.get('title'), data.get('description'), data.get('prompt'), userDoc.username, userDoc.id )
         .then((res)=>
         {
             handleUserDoc(res.data.userDoc)

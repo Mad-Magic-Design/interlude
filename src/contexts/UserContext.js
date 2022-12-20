@@ -3,14 +3,7 @@ import { useState } from "react";
 import {getUserDoc, updateUser, pushUser} from '../network/user'
 
 export const UserContext = createContext ()
-  /*  {
-    userDoc: {
-        username: '',
-        createdInterludes: [],
-        joinedInterludes: [],
-        options: {}
-        }
-})*/
+  
 
 export const UserProvider = (props) =>{
     const [userDoc, setUserDoc] = useState({
@@ -33,11 +26,21 @@ export const UserProvider = (props) =>{
 
     const updateUserField = (field, info) =>{
         updateUser(userDoc.id, field, info)
-        .then((res)=>setUserDoc(res.data.userDoc))
+        .then((res)=>{
+            console.log('returned doc in context', res.data.userDoc)
+            setUserDoc(res.data.userDoc)
+        })
     }
 
     const pushUserField = (field, info) =>{
-        pushUser(userDoc.id, field, info)
+        /*pushUser(userDoc.id, field, info)
+        .then((res)=>{
+            console.log('doc in context', res.data.userDoc)
+            setUserDoc(res.data.userDoc)})*/
+        const doc = {...userDoc}
+        doc[field] = [...doc[field], info]
+        console.log('pushed doc in context', doc)
+        updateUserField('userDoc', doc)
     }
 
 

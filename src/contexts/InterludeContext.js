@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { useState, useEffect } from "react";
-import {getInterlude, createInterlude, updateField, createAct, updateAct} from '../network/interlude'
+import {getInterlude, createInterlude, updateField,  updateAct} from '../network/interlude'
 
 export const InterludeContext = createContext ()
 
@@ -21,13 +21,40 @@ export const InterludeProvider = (props) =>{
     }, [props.data])
 
     const getInterludeDoc = () =>{
-        getInterlude(interludeDoc.id)
+        getInterlude(interludeDoc._id)
         .then((res)=>setInterludeDoc(res.data.interludeDoc))
     }
 
     const updateInterludeField = (field, info) =>{
-        updateField(interludeDoc.id, field, info)
-        .then((res)=>setInterludeDoc(res.data.interludeDoc))
+        console.log('inter', interludeDoc)
+        updateField(interludeDoc._id, field, info)
+        .then((res)=>setInterludeDoc(res.data.interlude))
+    }
+
+    const createAct = (act, username, id) =>{
+        const newAct = {
+            creator: username,
+            creatorId: id,
+            action: act,
+            stages: 'new', 
+            rollInstruction: {
+                description:'', 
+                type: 'skill',
+                DC: 15,
+            },
+            roll:{
+                type: '',
+                numberOfDice: 1,
+                dieType: 20,
+                modifier: 0,
+                result: 0,
+                success: false,
+            },
+        dmSays: '',
+        playerSays: '',
+        }
+        const acts = [...interludeDoc.acts, newAct]
+        updateInterludeField('acts', acts)
     }
 
     const pushAct = (act) =>{
@@ -49,6 +76,7 @@ export const InterludeProvider = (props) =>{
             pushAct,
             updateInterludeField,
             getInterludeDoc,
+            createAct,
         }}>
             {props.children}
         </InterludeContext.Provider>

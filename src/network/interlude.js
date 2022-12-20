@@ -13,9 +13,9 @@ const axiosClient = axios.create({
     return axiosClient.get(`/interlude/${iid}`)
   }
   
-  export function createInterlude (partyName, title, creator, userId){
+  export function createInterlude (partyName, title, description, prompt, creator, userId){
     return axiosClient.post(`/interlude/create`, {
-      partyName, title, creator, userId})
+      partyName, title, description, prompt, creator, userId})
   }
   export function updateField (iid, field, info){
     return axiosClient.put(`/interlude/update/${iid}`, {

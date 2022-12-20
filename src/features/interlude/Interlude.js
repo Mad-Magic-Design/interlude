@@ -1,11 +1,13 @@
 import { useContext } from "react"
 import { InterludeContext } from "../../contexts/InterludeContext"
 import { UserContext } from "../../contexts/UserContext"
+import {ActProvider} from '../../contexts/ActContext'
 
 import NewAct from "./NewAct"
+import Act from "./Act"
 
 import { Box } from "@mui/system"
-import { Container, Typography } from "@mui/material"
+import { Container, Typography, Paper } from "@mui/material"
 
 
 
@@ -16,14 +18,30 @@ export default function Interlude() {
 
   return (
     <>
-      <Container>
-        <Typography variant="h4">{interludeDoc.title}</Typography>
+      <Container  maxWidth='md' sx={{
+       
+        backgroundColor: 'primary.main'
+      }}>
+       
+        <Typography textAlign='center' variant="h6">{interludeDoc.title}</Typography>
+        <Typography textAlign='center' variant="h6">~</Typography>
         <Typography variant="body1">{interludeDoc.description}</Typography>
-        <Typography variant="body1">{interludeDoc.prompt}</Typography>
+        <Typography textAlign='center' variant="h6">~</Typography>
+        <Typography sx={{color: 'secondary.main'}} variant="body1">Interlude: {interludeDoc.prompt}</Typography>
+        
       </Container>
+      <Container>
+      <Paper>
       {!isOwned && <NewAct/>}
-      <div>{interludeDoc.title}</div>
-    
+      </Paper>
+    </Container>
+    <Container>
+      <Paper>
+        {interludeDoc.acts.map(act=> 
+          <ActProvider data={act}><Act/></ActProvider>
+          )}
+      </Paper>
+    </Container>
     </>
   )
 }

@@ -25,7 +25,7 @@ const axiosClient = axios.create({
     })
   }
   export function pushUser (uid, field, info){
-    return axiosClient.post(`/user/update/${uid}`, {
+    return axiosClient.post(`/user/push/${uid}`, {
       field, info
         }
       )}
