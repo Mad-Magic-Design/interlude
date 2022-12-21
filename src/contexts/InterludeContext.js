@@ -63,8 +63,15 @@ export const InterludeProvider = (props) =>{
     }
 
     const updateInterludeAct = (act, index) =>{
-        updateAct(interludeDoc.id, act, index)
-        .then((res)=>setInterludeDoc(res.data.interludeDoc))
+        const newActs = [...interludeDoc.acts]
+        newActs[index] = act
+        //const newDoc = {...interludeDoc, acts: newActs}
+        updateField(interludeDoc._id, 'acts', newActs)
+        .then((res)=>{
+            console.log('response', res.data.interlude)
+            setInterludeDoc(res.data.interlude)
+        })
+        
     }
 
 

@@ -30,13 +30,17 @@ export default function Interlude() {
         <Typography sx={{color: 'secondary.main'}} variant="body1">Interlude: {interludeDoc.prompt}</Typography>
         
       </Container>
-      <Container>
+      <Container maxWidth='md' disableGutters>
       <Paper>
       {!isOwned && <NewAct/>}
       </Paper>
     </Container>
-    <Container>
-      <Paper>
+    <Container maxWidth='md' disableGutters>
+      <Paper sx={{
+        border: 6,
+        borderColor: 'primary.main',
+        borderRadius:0,
+      }}>
         {interludeDoc.acts.map((act, index)=> 
           <ActProvider updateDoc={updateInterludeAct} index={index} data={act}><Act isOwned={isOwned}/></ActProvider>
           )}

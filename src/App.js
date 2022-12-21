@@ -16,7 +16,7 @@ import TopBar from './features/navigation/TopBar';
 function App() {
 
   const { token, login, logout} = useAuth();
-  const [isDarkTheme, setIsDarkTheme] = useState(false)
+  const [isDarkTheme, setIsDarkTheme] = useState(true)
 
   return (
     <AuthContext.Provider value={{

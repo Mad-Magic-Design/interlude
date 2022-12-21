@@ -7,7 +7,7 @@ export const ActProvider = (props) =>{
     const defaultActDoc = {
         creator: '',
         creatorId: '',
-        stages: 'new', //new, rollAvail, rolled, completed
+        stage: 'new', //new, rollAvail, rolled, completed
         action: '',
         rollInstruction: {
             description:'', 
@@ -17,7 +17,7 @@ export const ActProvider = (props) =>{
         roll:{
             type: '',
             numberOfDice: 1,
-            dieType: 20,
+            sides: 20,
             modifier: 0,
             result: 0,
             success: false,
@@ -37,10 +37,11 @@ export const ActProvider = (props) =>{
     }, [props.index])
 
     const updateActField = (field, data) =>{
-        let newStage = actDoc.stages
-        if (field==='rollInstruction') newStage = 'rollAvail' 
+        let newStage = actDoc.stage
+        if (field==='rollInstruction') newStage = 'rollAvail'
+        if (field==='roll') newStage = 'rolled' 
 
-        const newAct = {...actDoc, [field]:data, stages:newStage}
+        const newAct = {...actDoc, [field]:data, stage:newStage}
         setActDoc(newAct)
         props.updateDoc(newAct, actIndex)
     }
@@ -48,7 +49,7 @@ export const ActProvider = (props) =>{
 
     return (
         <ActContext.Provider value={{
-            actDoc,
+            actDoc, updateActField
         }}>
             {props.children}
         </ActContext.Provider>

@@ -12,7 +12,8 @@ export default function SetRoll(props) {
         const data = new FormData(event.currentTarget);
         props.setRoll({
           intructions: data.get('instructions'),
-          type: alignment
+          type: alignment,
+          DC: data.get('DC')
         })
     }
 
@@ -28,9 +29,9 @@ export default function SetRoll(props) {
               margin="normal"
               required
               fullWidth
-              id="instructions"
+              id="description"
               label="instructions"
-              name="instructions"
+              name="description"
               autoFocus
             />
            
