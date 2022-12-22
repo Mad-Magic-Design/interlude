@@ -23,7 +23,8 @@ export default function PlayerRollInput(props) {
 const makeRoll = (number, sides, modifier) =>{
   let roll=0
   for (let i; i<=number; i++){
-    roll += Math.random(0, sides) + +1
+    roll += Math.floor(Math.random(0, sides)) + +1
+    
   }
   roll += modifier
   return roll
@@ -57,7 +58,7 @@ return (
           id="modifier"
           label="modifier"
           name="modifier"
-        
+          defaultValue={0}
         />
 
         <Button

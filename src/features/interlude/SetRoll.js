@@ -11,7 +11,7 @@ export default function SetRoll(props) {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         props.setRoll({
-          intructions: data.get('instructions'),
+          description: data.get('description'),
           type: alignment,
           DC: data.get('DC')
         })

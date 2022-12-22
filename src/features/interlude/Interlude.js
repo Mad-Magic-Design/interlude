@@ -1,7 +1,8 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { InterludeContext } from "../../contexts/InterludeContext"
 import { UserContext } from "../../contexts/UserContext"
 import {ActProvider} from '../../contexts/ActContext'
+import { ThemeSettingsContext } from "../../contexts/ThemeSettingsContext"
 
 import NewAct from "./NewAct"
 import Act from "./Act"
@@ -14,7 +15,13 @@ import { Container, Typography, Paper } from "@mui/material"
 export default function Interlude() {
     const {interludeDoc, updateInterludeAct} = useContext(InterludeContext)
     const {userDoc} = useContext(UserContext)
+    const {setPage, setInterludeId} = useContext(ThemeSettingsContext)
     const isOwned = userDoc.createdInterludes.map(inter=>inter.id).includes(interludeDoc._id)
+
+    useEffect(()=>{
+      setPage('interlude')
+      setInterludeId(interludeDoc._id)
+    }, [])
 
   return (
     <>

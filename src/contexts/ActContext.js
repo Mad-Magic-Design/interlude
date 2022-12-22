@@ -40,6 +40,7 @@ export const ActProvider = (props) =>{
         let newStage = actDoc.stage
         if (field==='rollInstruction') newStage = 'rollAvail'
         if (field==='roll') newStage = 'rolled' 
+       // if (field==='rolled' && actDoc.dmSays !=='' && actDoc.playerSays !=='') newStage= 'completed'
 
         const newAct = {...actDoc, [field]:data, stage:newStage}
         setActDoc(newAct)

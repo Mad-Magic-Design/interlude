@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {getUserDoc, updateUser, pushUser} from '../network/user'
 
 export const UserContext = createContext ()
@@ -13,6 +13,10 @@ export const UserProvider = (props) =>{
         joinedInterludes: [],
         options: {}
     })
+
+    useEffect(()=>{
+        if (userDoc.id === '' && localStorage.getItem('interludeDoc')) setUserDoc(JSON.parse(localStorage.getItem('interludeDoc')))
+    }, [userDoc])
 
     const handleUserDoc = (newUserDoc) =>{
         setUserDoc(newUserDoc)

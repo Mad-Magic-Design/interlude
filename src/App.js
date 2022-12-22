@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState, useContext} from 'react';
 import './App.css';
 import {Routes, Route} from 'react-router-dom'
 import {useAuth} from './hooks/useAuth';
@@ -12,11 +12,12 @@ import Landing from './pages/Landing';
 import Home from './pages/Home'
 import Interlude from './features/interlude/Interlude'
 import TopBar from './features/navigation/TopBar';
+import { ThemeSettingsContext } from './contexts/ThemeSettingsContext';
 
 function App() {
 
   const { token, login, logout} = useAuth();
-  const [isDarkTheme, setIsDarkTheme] = useState(true)
+  const {isDarkTheme} = useContext(ThemeSettingsContext)
 
   return (
     <AuthContext.Provider value={{
@@ -28,11 +29,11 @@ function App() {
     <UserProvider>
     <ThemeProvider theme={isDarkTheme?darkThemeOptions:lightThemeOptions}>
     <CssBaseline enableColorScheme />
-    <TopBar toggleTheme={()=>setIsDarkTheme(prev => (!prev))}/>
+    
       <Routes>
         <Route path='/' element={<Landing/>}/>
         <Route path='/home/*' element={<Home/>}/>
-        <Route path='/interlude/:iid' element={<Interlude/>}/>
+       {/* <Route path='/interlude/:iid' element={<Interlude/>}/>*/}
       </Routes>
       </ThemeProvider>
       </UserProvider>

@@ -5,11 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 
+import { ThemeSettingProvider } from './contexts/ThemeSettingsContext';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <ThemeSettingProvider>
+        <App />
+      </ThemeSettingProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

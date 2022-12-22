@@ -19,6 +19,7 @@ export const useAuth = () => {
   const logout = useCallback(() => {
     setToken(null);
     localStorage.removeItem('interludejwt');
+    localStorage.removeItem('interludeUser')
     navigate('/')
   }, []);
 

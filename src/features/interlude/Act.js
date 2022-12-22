@@ -32,6 +32,11 @@ export default function Act(props) {
     updateActField('roll', roll)
   }
 
+  const setSays = (says, speaker) =>{
+    const field = speaker==='Dm'?'dmSays':'playerSays'
+    updateActField (field, says)
+  }
+
   console.log('actDoc', actDoc)
   
 
@@ -47,8 +52,11 @@ export default function Act(props) {
       {actDoc.stage==='rollAvail' && <Typography variant='body2'>{actDoc.rollInstruction.description}</Typography>}
       {actDoc.stage==='rollAvail' && ownership==='creator' && <PlayerRollInput rollInstruction={actDoc.rollInstruction} makeRoll={makeRoll}/>}
       {actDoc.stage==='rolled' && <RollResults roller={actDoc.creator} actDoc={actDoc}/>}
-      {actDoc.stage==='rolled' && <Says speaker='dm'/>}
-      {actDoc.stage==='rolled' && <Says speaker={actDoc.creator}/>}
+      {actDoc.stage==='rolled' && ownership==='dm' && actDoc.dmSays==='' && <Says setSays={setSays} speaker='Dm' actDoc={actDoc} input={actDoc.dmSays===''}/> }
+      {actDoc.dmSays !== '' && <Says speaker='Dm' actDoc={actDoc} input={actDoc.dmSays===''}/> }
+      {actDoc.stage==='rolled' && ownership==='creator' && actDoc.playerSays==='' && <Says setSays={setSays} speaker={actDoc.creator} actDoc={actDoc} input={actDoc.playerSays===''}/> }
+      {actDoc.playerSays !== '' && <Says  speaker={actDoc.creator} actDoc={actDoc} input={actDoc.playerSays===''}/> }
+      
     </Container>
   )
 }
