@@ -9,15 +9,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import NewMenu from "./NewMenu";
 import { ThemeSettingsContext } from "../../contexts/ThemeSettingsContext"
+import ConfirmModal from "../../components/ConfirmModal"
 
 export default function InterludeMenu() {
   const [newMenu, setNewMenu] = useState( {
     open: false,
     anchorEl: null
   })
-  const {userDoc} = useContext(UserContext)
+  const {userDoc, updateUserDocField} = useContext(UserContext)
   const navigate=useNavigate()
-  const {setPage, trashMode} = useContext(ThemeSettingsContext)
+  const {setPage, trashMode, setTrashMode} = useContext(ThemeSettingsContext)
 
   useEffect(()=>{
     setPage('home')
@@ -31,9 +32,27 @@ export default function InterludeMenu() {
     console.log(e.currentTarget)
   }
 
-  const handleNewClose = () =>{
 
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false)
+  const [toDelete, setToDelete] = useState()
+  const confirmDelete = () => {
+    setDeleteModalOpen(false)
+    let interludes
+    toDelete.isCreated?
+    interludes = [...userDoc.createdInterludes]
+    :interludes = [...userDoc.joinedInterludes]
+    const newInterludes = interludes.filter(interlude => interlude !== toDelete.interlude)
+    toDelete.isCreated?
+    updateUserDocField('createdInterludes', newInterludes)
+    :updateUserDocField('joinedInterludes', newInterludes)
+    setTrashMode(false)
   }
+
+  const handleDeleteClick = (interlude, isCreated) =>{
+    setToDelete({interlude, isCreated})
+    setDeleteModalOpen(true)
+  }
+
 
   return (
     <Paper>
@@ -57,11 +76,11 @@ export default function InterludeMenu() {
         <>
         {userDoc.createdInterludes.map((interlude)=>
          <>
-         <Button onClick={()=>navigate(`/home/interlude/${interlude.id}`)} sx={{backgroundColor:'primary.light', mb:1}} fullWidth >{<DeleteIcon/>}  {interlude.title}</Button>
+         <Button onClick={()=>handleDeleteClick(interlude, true)} sx={{backgroundColor:'primary.light', mb:1}} fullWidth >{<DeleteIcon/>}  {interlude.title}</Button>
          </>
          )}
         {userDoc.joinedInterludes.map((interlude)=>
-         <Button onClick={()=>navigate(`/home/interlude/${interlude.id}`)} sx={{backgroundColor:'primary.dark', mb:1}} fullWidth>{<DeleteIcon/>}  {interlude.title}</Button>)}
+         <Button onClick={()=>()=>handleDeleteClick(interlude, false)} sx={{backgroundColor:'primary.dark', mb:1}} fullWidth>{<DeleteIcon/>}  {interlude.title}</Button>)}
         </>
         :
         <>
@@ -73,6 +92,7 @@ export default function InterludeMenu() {
         }
       </Container>
       {newMenu.open && <NewMenu anchorEl={newMenu.anchorEl}/>}
+      {deleteModalOpen && <ConfirmModal handleClose={()=>setDeleteModalOpen(false)} confirmDelete={confirmDelete} />}
     </Paper>
   )
 }

@@ -28,8 +28,14 @@ export const UserProvider = (props) =>{
         .then((res)=>setUserDoc(res.data.userDoc))
     }
 
-    const updateUserField = (field, info) =>{
-        updateUser(userDoc.id, field, info)
+    const updateUserDocField = (field, info) =>{
+        const doc = {...userDoc}
+        doc[field] = info
+        updateUserDoc(doc)
+    }
+
+    const updateUserDoc = (newDoc) => {
+        updateUser(userDoc.id, 'userDoc', newDoc)
         .then((res)=>{
             console.log('returned doc in context', res.data.userDoc)
             setUserDoc(res.data.userDoc)
@@ -44,7 +50,7 @@ export const UserProvider = (props) =>{
         const doc = {...userDoc}
         doc[field] = [...doc[field], info]
         console.log('pushed doc in context', doc)
-        updateUserField('userDoc', doc)
+        updateUserDoc(doc)
     }
 
 
@@ -54,7 +60,7 @@ export const UserProvider = (props) =>{
             setUserDoc,
             handleUserDoc,
             getUser,
-            updateUserField,
+            updateUserDocField,
             pushUserField,
         }}>
             {props.children}
