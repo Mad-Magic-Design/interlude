@@ -36,7 +36,7 @@ export const InterludeProvider = (props) =>{
             creator: username,
             creatorId: id,
             action: act,
-            stages: 'new', 
+            stage: 'new', 
             rollInstruction: {
                 description:'', 
                 type: 'skill',

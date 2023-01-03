@@ -3,6 +3,7 @@ import {Box, Container} from "@mui/system"
 import { TextField, FormControlLabel, Button, ToggleButton, ToggleButtonGroup } from "@mui/material"
 
 import { useState } from "react";
+import roll from "../../utils/roller.ts";
 
 export default function PlayerRollInput(props) {
   const handleSubmit = (event) =>{
@@ -11,7 +12,7 @@ export default function PlayerRollInput(props) {
     const number= data.get('number')
     const sides= data.get('sides')
     const modifier= data.get('modifier')
-    const result = makeRoll(number, sides, modifier)
+    const result = roll(number, sides, modifier)
     let success = false
     if (props.type==='skill' && result >= props.DC) success = true
     props.makeRoll({
@@ -20,19 +21,9 @@ export default function PlayerRollInput(props) {
     })
 }
 
-const makeRoll = (number, sides, modifier) =>{
-  let roll=0
-  for (let i; i<=number; i++){
-    roll += Math.floor(Math.random(0, sides)) + +1
-    
-  }
-  roll += modifier
-  return roll
-}
-
 return (
 <Container>
-    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
         <TextField
           margin="normal"
           required

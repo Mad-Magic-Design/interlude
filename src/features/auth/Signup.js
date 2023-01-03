@@ -1,7 +1,7 @@
 import { Box,  } from "@mui/system"
-import { FormControlLabel, TextField, Checkbox, Button } from "@mui/material";
+import { FormControlLabel, TextField, Checkbox, Button, Typography } from "@mui/material";
 import { signupUser } from "../../network/user";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {UserContext} from '../../contexts/UserContext'
 import {AuthContext} from '../../contexts/AuthContext'
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ export default function Signup() {
   const {login} = useContext(AuthContext)
   const {handleUserDoc} = useContext(UserContext)
   const navigate = useNavigate()
+  const [errorMessage, setErrorMessage] = useState()
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -32,13 +33,17 @@ export default function Signup() {
           handleUserDoc({
             ...userDoc, id:res.data.userId
           })
+          navigate('/home')
         })
-        .then(navigate('/home'))
+        .catch((error)=>{
+          console.log(error.response.data.message)
+          setErrorMessage(error.response.data.message)
+        })
 
         
       };
   return (
-    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -66,7 +71,9 @@ export default function Signup() {
               type="password"
               id="password"
               autoComplete="current-password"
+              inputProps={{ minLength: 6 }}
             />
+            {errorMessage && <Typography variant="body2">{errorMessage}</Typography>}
             <Button
               type="submit"
               fullWidth

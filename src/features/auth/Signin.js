@@ -1,7 +1,7 @@
 import { Box,  } from "@mui/system"
-import { FormControlLabel, TextField, Checkbox, Button } from "@mui/material";
+import { FormControlLabel, TextField, Checkbox, Button, Typography } from "@mui/material";
 import { signinUser } from "../../network/user";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {UserContext} from '../../contexts/UserContext'
 import {AuthContext} from '../../contexts/AuthContext'
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 export default function Signin() {
   const {login} = useContext(AuthContext)
   const {handleUserDoc} = useContext(UserContext)
+  const [errorMessage, setErrorMessage] = useState()
   const navigate = useNavigate()
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -24,11 +25,15 @@ export default function Signin() {
           handleUserDoc({
             ...res.data.userDoc, id:res.data.userId
           })
+          navigate('/home')
         })
-        .then(navigate('/home')) //handle error
+        .catch((error)=>{
+          console.log(error.response.data.message)
+          setErrorMessage(error.response.data.message)
+        }) //handle error
       };
   return (
-    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -48,7 +53,9 @@ export default function Signin() {
               type="password"
               id="password"
               autoComplete="current-password"
+              inputProps={{ minLength: 6 }}
             />
+            {errorMessage && <Typography variant="body2">{errorMessage}</Typography>}
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"

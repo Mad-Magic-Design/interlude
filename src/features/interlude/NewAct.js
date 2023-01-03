@@ -19,7 +19,7 @@ export default function NewAct() {
   }
   return (
     <Container>
-       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+       <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
         
           <TextField
           id='act'
@@ -31,7 +31,7 @@ export default function NewAct() {
           fullWidth
           multiline
           rows={4}
-          
+          required
           
           />
         <Button

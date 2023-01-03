@@ -13,10 +13,15 @@ import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import ListIcon from '@mui/icons-material/List';
 
 export default function TopBar(props) {
-  const {userDoc} = useContext(UserContext)
-  const {isLoggedIn} = useContext(AuthContext)
+  const {userDoc, handleUserDoc} = useContext(UserContext)
+  const {isLoggedIn, logout} = useContext(AuthContext)
   const {isDarkTheme, toggleTheme, setTrashMode, page, interludeId} = useContext(ThemeSettingsContext)
   const navigate = useNavigate()
+  const signOut = () =>{
+    handleUserDoc({id:'', username:'',createdInterludes: [],joinedInterludes:[],options:{}})
+    logout()
+    navigate('/')
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -56,7 +61,7 @@ export default function TopBar(props) {
             {isDarkTheme?<Brightness4Icon/>:<Brightness7Icon/>}
           </IconButton>
           
-          <Button color="inherit">{isLoggedIn?'Sign Out':'Sign In'}</Button>
+          <Button onClick={isLoggedIn?signOut:()=>navigate('/')} color="inherit">{isLoggedIn?'Sign Out':'Sign In'}</Button>
         </Toolbar>
       </AppBar>
     </Box>
