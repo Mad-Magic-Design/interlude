@@ -18,8 +18,8 @@ export default function Act(props) {
     'dm'
     :actDoc.creator === userDoc.username?'creator':false
 
-  console.log('ownership', ownership)
-  console.log('stage', actDoc.stages)
+ // console.log('ownership', ownership)
+  //console.log('stage', actDoc.stages)
   
 
 
@@ -37,21 +37,22 @@ export default function Act(props) {
     updateActField (field, says)
   }
 
-  console.log('actDoc', actDoc)
+  //console.log('actDoc', actDoc)
   
 
   return (
     <Container maxWidth='md' sx={{
-      border: 6,
-      borderColor: 'secondary.dark',
-      borderRadius: 1,
-      mt: 2
+      backgroundColor: 'background.paper',
+      mt: 2,
+      borderRadius: 2,
     }}>
       <Typography variant='body2'>{actDoc.creator}: {actDoc.action}</Typography>
       {actDoc.stage==='new' && ownership ==='dm' && <SetRoll setRoll={setRoll}/>}
-      {actDoc.stage==='rollAvail' && <Typography variant='body2'>{actDoc.rollInstruction.description}</Typography>}
+      <Typography sx={{color: 'secondary.main'}} textAlign='center' variant="h6">~</Typography>
+      {actDoc.stage==='rollAvail' && <Typography variant='body2'>DM says: {actDoc.rollInstruction.description}</Typography>}
       {actDoc.stage==='rollAvail' && ownership==='creator' && <PlayerRollInput rollInstruction={actDoc.rollInstruction} makeRoll={makeRoll}/>}
       {actDoc.stage==='rolled' && <RollResults roller={actDoc.creator} actDoc={actDoc}/>}
+      {actDoc.stage==='rolled' && <Typography sx={{color: 'secondary.main'}} textAlign='center' variant="h6">~</Typography>}
       {actDoc.stage==='rolled' && ownership==='dm' && actDoc.dmSays==='' && <Says setSays={setSays} speaker='Dm' actDoc={actDoc} input={actDoc.dmSays===''}/> }
       {actDoc.dmSays !== '' && <Says speaker='Dm' actDoc={actDoc} input={actDoc.dmSays===''}/> }
       {actDoc.stage==='rolled' && ownership==='creator' && actDoc.playerSays==='' && <Says setSays={setSays} speaker={actDoc.creator} actDoc={actDoc} input={actDoc.playerSays===''}/> }

@@ -14,7 +14,7 @@ export default function Says(props) {
   return (
     <>
     {props.input?
-      <Container>
+      <Container >
         <Box component="form" onSubmit={handleSubmit}  sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -31,11 +31,11 @@ export default function Says(props) {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Create
+              Submit
             </Button>
           </Box>
       </Container>
-      :<Container>
+      :<Container disableGutters>
         <Typography variant="body2">{props.speaker} says: {props.speaker==="Dm"?props.actDoc.dmSays:props.actDoc.playerSays}</Typography>
       </Container>
   }

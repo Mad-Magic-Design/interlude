@@ -33,7 +33,7 @@ export const lightThemeOptions = createTheme({
       fontFamily: 'Spectral',
     },
     body2: {
-      fontFamily: 'Spectral',
+      fontFamily: 'Pathway Gothic One',
       fontSize: '1.5rem',
     },
     button: {
@@ -46,6 +46,17 @@ export const lightThemeOptions = createTheme({
 });
 
 export const darkThemeOptions = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          backgroundColor: '#FAACA8',
+          backgroundImage: `radial-gradient(circle, rgba(4,3,22,1) 0%, rgba(2,13,36,1) 95%, rgba(11,9,138,1) 100%)`,
+          textShadow: "2px 3px 5px rgba(0,0,0,0.5)"
+        },
+      },
+    },
+  },
   palette: {
     type: 'dark',
     primary: {
@@ -69,23 +80,28 @@ export const darkThemeOptions = createTheme({
   typography: {
     fontFamily: 'Pathway Gothic One',
     fontSize: 24,
+    textShadow: "2px 3px 5px rgba(0,0,0,0.5)",
     h4: {
       fontFamily: 'Spectral',
     },
     h6: {
       fontFamily: 'Spectral',
+      textShadow: "0px 0px 3px rgba(255,255,255,0.7)"
     },
     body1: {
       fontFamily: 'Spectral',
     },
     body2: {
-      fontFamily: 'Spectral',
+      fontFamily: 'Pathway Gothic One',
+      textShadow: "1px 3px 5px rgba(0,0,0,0.5)",
     },
     button: {
       fontFamily: 'Spectral',
     },
     h1: {
       fontFamily: 'Spectral',
+      fontSize: '16rem',
+      textShadow: "0px 0px 6px rgba(255,255,255,0.7)"
     },
   },
 });

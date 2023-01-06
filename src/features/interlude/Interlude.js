@@ -26,7 +26,8 @@ export default function Interlude() {
   return (
     <>
       <Container  maxWidth='md' sx={{
-       
+        borderTopRightRadius:2,
+        borderTopLeftRadius: 2,
         backgroundColor: 'primary.main'
       }}>
        
@@ -37,19 +38,24 @@ export default function Interlude() {
         <Typography sx={{color: 'secondary.main'}} variant="body1">Interlude: {interludeDoc.prompt}</Typography>
         
       </Container>
-      <Container maxWidth='md' disableGutters>
-      <Paper>
+      <Container sx={{}} maxWidth='md' disableGutters>
+      <Paper 
+      sx={{
+        pt:1,
+        borderRadius:0,
+        backgroundColor: 'secondary.dark'}}>
       {!isOwned && <NewAct/>}
       </Paper>
     </Container>
     <Container maxWidth='md' disableGutters>
       <Paper sx={{
-        border: 6,
-        borderColor: 'primary.main',
-        borderRadius:0,
+         borderTopRightRadius:0,
+         borderTopLeftRadius:0,
+        backgroundColor: 'secondary.dark',
+        p:1
       }}>
         {interludeDoc.acts.map((act, index)=> 
-          <ActProvider updateDoc={updateInterludeAct} index={index} data={act}><Act isOwned={isOwned}/></ActProvider>
+          <ActProvider key={index} updateDoc={updateInterludeAct} index={index} data={act}><Act key={index} isOwned={isOwned}/></ActProvider>
           )}
       </Paper>
     </Container>

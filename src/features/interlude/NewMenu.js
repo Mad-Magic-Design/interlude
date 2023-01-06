@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom';
 export default function NewMenu(props) {
   const navigate = useNavigate()
 
+  const handleClose = () =>{
+    console.log('im hadling lthis cllose')
+    props.handleClose()
+  }
 
   return (
       <Menu
@@ -12,7 +16,7 @@ export default function NewMenu(props) {
         aria-labelledby="demo-positioned-button"
         anchorEl={props.anchorEl}
         open={true}
-        onClose={()=>props.handleClose()}
+        onClose={handleClose}
         anchorOrigin={{
           vertical: 'top',
           horizontal: 'left',

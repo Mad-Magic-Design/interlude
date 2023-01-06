@@ -23,7 +23,10 @@ export default function TopBar(props) {
     navigate('/')
   }
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1,
+      borderRadius: 2,
+      boxShadow: "2px 2px 2px #661009, -2px -2px 2px #8a160c"
+    }}>
       <AppBar position="static">
         <Toolbar>
           

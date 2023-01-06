@@ -12,12 +12,13 @@ export default function PlayerRollInput(props) {
     const number= data.get('number')
     const sides= data.get('sides')
     const modifier= data.get('modifier')
-    const result = roll(number, sides, modifier)
+    const result = roll(number, sides, Number(modifier))
     let success = false
-    if (props.type==='skill' && result >= props.DC) success = true
+    console.log('roll Intrucutcin', props.rollInstruction)
+    if (props.rollInstruction.type==='check' && result >= props.rollInstruction.DC) success = true
     props.makeRoll({
       number, sides, modifier, result, success,
-      type: props.type,
+      type: props.rollInstruction.type,
     })
 }
 
@@ -32,6 +33,7 @@ return (
           label="Number of Dice"
           name="number"
           autoFocus
+          type='number'
         />
         <TextField
           margin="normal"
@@ -40,7 +42,7 @@ return (
           id="sides"
           label="Die Sides"
           name="sides"
-          
+          type='number'
         />
         <TextField
           margin="normal"
@@ -49,6 +51,7 @@ return (
           id="modifier"
           label="modifier"
           name="modifier"
+          type='number'
           defaultValue={0}
         />
 

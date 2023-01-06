@@ -49,16 +49,26 @@ export default function InterludeMenu() {
   }
 
   const handleDeleteClick = (interlude, isCreated) =>{
+    console.log('delete clicke', interlude, isCreated)
     setToDelete({interlude, isCreated})
     setDeleteModalOpen(true)
   }
 
+  const handleMenuClose = () =>{
+    console.log('got hereber')
+    setNewMenu({open: false,
+      anchorEl: null})
+  }
 
+ 
   return (
     <Paper>
       <Container disableGutters sx={{
+        mt:4,
         backgroundColor: 'primary.main',
-        position: 'relative'
+        position: 'relative',
+        borderRadius: 2,
+        boxShadow: "2px 2px 2px #661009, -2px -2px 2px #8a160c"
       }}>
         <Fab onClick={handleNewClick}
           sx={{
@@ -70,28 +80,30 @@ export default function InterludeMenu() {
         <Typography align="center" variant='h6'>Interludes</Typography>
       </Container>
       <Container sx={{
-        p:3
+        p:3,
+        borderRadius: 2,
+      boxShadow: "2px 2px 2px #1f0f36, -2px -2px 2px #29154a;"
       }}>
         {trashMode?
         <>
-        {userDoc.createdInterludes.map((interlude)=>
+        {userDoc.createdInterludes.map((interlude, i)=>
          <>
-         <Button onClick={()=>handleDeleteClick(interlude, true)} sx={{backgroundColor:'primary.light', mb:1}} fullWidth >{<DeleteIcon/>}  {interlude.title}</Button>
+         <Button key={i} onClick={()=>handleDeleteClick(interlude, true)} sx={{backgroundColor:'primary.light', mb:1, boxShadow: 9}} fullWidth >{<DeleteIcon/>}  {interlude.title}</Button>
          </>
          )}
-        {userDoc.joinedInterludes.map((interlude)=>
-         <Button onClick={()=>()=>handleDeleteClick(interlude, false)} sx={{backgroundColor:'primary.dark', mb:1}} fullWidth>{<DeleteIcon/>}  {interlude.title}</Button>)}
+        {userDoc.joinedInterludes.map((interlude, i)=>
+         <Button key={i} onClick={()=>handleDeleteClick(interlude, false)} sx={{backgroundColor:'primary.dark', mb:1 , boxShadow: 9}} fullWidth>{<DeleteIcon/>}  {interlude.title}</Button>)}
         </>
         :
         <>
-        {userDoc.createdInterludes.map((interlude)=>
-         <Button onClick={()=>navigate(`/home/interlude/${interlude.id}`)} sx={{backgroundColor:'primary.light', mb:1}} fullWidth>{interlude.title}</Button>)}
-        {userDoc.joinedInterludes.map((interlude)=>
-         <Button onClick={()=>navigate(`/home/interlude/${interlude.id}`)} sx={{backgroundColor:'primary.dark', mb:1}} fullWidth>{interlude.title}</Button>)}
+        {userDoc.createdInterludes.map((interlude, i)=>
+         <Button key={i} onClick={()=>navigate(`/home/interlude/${interlude.id}`)} sx={{backgroundColor:'primary.light', mb:1, boxShadow: 3}} fullWidth>{interlude.title}</Button>)}
+        {userDoc.joinedInterludes.map((interlude, i)=>
+         <Button key={i} onClick={()=>navigate(`/home/interlude/${interlude.id}`)} sx={{backgroundColor:'primary.dark', mb:1, boxShadow: 3}} fullWidth>{interlude.title}</Button>)}
         </>
         }
       </Container>
-      {newMenu.open && <NewMenu anchorEl={newMenu.anchorEl}/>}
+      {newMenu.open && <NewMenu handleClose={handleMenuClose} anchorEl={newMenu.anchorEl}/>}
       {deleteModalOpen && <ConfirmModal handleClose={()=>setDeleteModalOpen(false)} confirmDelete={confirmDelete} />}
     </Paper>
   )

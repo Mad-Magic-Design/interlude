@@ -62,7 +62,7 @@ export default function SetRoll(props) {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Create
+              Set Roll
             </Button>
             </Box>
     </Container>
