@@ -15,6 +15,8 @@ export default function Signin() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
+        if (data.get('human'))
+        {
         signinUser({
           email: data.get('email'),
           password: data.get('password'),
@@ -32,6 +34,7 @@ export default function Signin() {
           setErrorMessage(error.response.data.message)
         }) //handle error
       };
+    }
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
@@ -42,7 +45,7 @@ export default function Signin() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
+              
             />
             <TextField
               margin="normal"
@@ -57,8 +60,8 @@ export default function Signin() {
             />
             {errorMessage && <Typography variant="body2">{errorMessage}</Typography>}
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              control={<Checkbox name='human' value="human" color="primary" />}
+              label="I'm a human (elves and dwarves good too)"
             />
             <Button
               type="submit"

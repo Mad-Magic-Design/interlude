@@ -1,0 +1,26 @@
+.path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: dash 2s linear forwards;
+  }
+
+.path-light{
+    
+    animation: dash 2s linear forwards;
+}
+
+.path-dark{
+    
+    animation: dash 2s linear forwards;
+}
+  
+  @keyframes dash {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+ 

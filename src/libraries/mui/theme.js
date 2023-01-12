@@ -28,6 +28,14 @@ export const lightThemeOptions = createTheme({
     },
     h6: {
       fontFamily: 'Spectral',
+      '@media (max-width:600px)': {
+        fontSize: '1rem',
+      },
+    },
+    subtitle1:{
+      '@media (max-width:600px)': {
+        fontSize: '1.2rem',
+      },
     },
     body1: {
       fontFamily: 'Spectral',
@@ -35,12 +43,17 @@ export const lightThemeOptions = createTheme({
     body2: {
       fontFamily: 'Pathway Gothic One',
       fontSize: '1.5rem',
+      
     },
     button: {
       fontFamily: 'Spectral',
     },
     h1: {
       fontFamily: 'Spectral',
+      fontSize: '16rem',
+      '@media (max-width:600px)': {
+        fontSize: '4rem',
+      },
     },
   },
 });
@@ -86,7 +99,15 @@ export const darkThemeOptions = createTheme({
     },
     h6: {
       fontFamily: 'Spectral',
-      textShadow: "0px 0px 3px rgba(255,255,255,0.7)"
+      textShadow: "0px 0px 3px rgba(255,255,255,0.7)",
+      '@media (max-width:600px)': {
+        fontSize: '1rem',
+      },
+    },
+    subtitle1:{
+      '@media (max-width:600px)': {
+        fontSize: '1.2rem',
+      },
     },
     body1: {
       fontFamily: 'Spectral',
@@ -101,7 +122,10 @@ export const darkThemeOptions = createTheme({
     h1: {
       fontFamily: 'Spectral',
       fontSize: '16rem',
-      textShadow: "0px 0px 6px rgba(255,255,255,0.7)"
+      textShadow: "0px 0px 6px rgba(255,255,255,0.7)",
+      '@media (max-width:600px)': {
+        fontSize: '4rem',
+      },
     },
   },
 });

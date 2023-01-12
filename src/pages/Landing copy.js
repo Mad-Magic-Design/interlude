@@ -7,8 +7,6 @@ import { useState, useContext } from "react"
 import { ThemeSettingsContext } from "../contexts/ThemeSettingsContext"
 import Signin from "../features/auth/Signin"
 import Signup from "../features/auth/Signup"
-import {ReactComponent as OneLine} from '../imgs/oneline.svg'
-import './Landing.css'
 
 
 
@@ -19,9 +17,11 @@ export default function Landing() {
     <Box>  
       <Container 
         sx={{
+          backgroundColor: 'primary.main',
           mt:4,
           pb:2,
-          borderRadius: 2,  
+          borderRadius: 2,
+          boxShadow: "2px 2px 2px #661009, -2px -2px 2px #8a160c"
         }}
       >
         <Container disableGutters sx={{
@@ -34,12 +34,8 @@ export default function Landing() {
               {isDarkTheme?<Brightness4Icon/>:<Brightness7Icon/>}
             </IconButton>
             </Container>
-        <Typography variant='h1' align="center" sx={isDarkTheme?{}:{color:'primary.main'}}>Interludes</Typography>
+        <Typography variant='h1' align="center">Interludes</Typography>
         <Typography variant='subtitle1' align='center'>play out downtime between rpg sessions</Typography>
-        <Box>
-          <OneLine id='oneline'  stroke={isDarkTheme?'#E8E4EE':'black'}/>
-        </Box>
-        
       </Container>
       <Container disableGutters component="main"  maxWidth="xs" sx={{
       mt:4,

@@ -82,6 +82,8 @@ export default function InterludeMenu() {
       <Container sx={{
         p:3,
         borderRadius: 2,
+        borderTopLeftRadius:0,
+        borderTopRightRadius:0,
       boxShadow: "2px 2px 2px #1f0f36, -2px -2px 2px #29154a;"
       }}>
         {trashMode?

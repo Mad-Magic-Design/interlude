@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const ThemeSettingsContext = createContext()
 
 export const ThemeSettingProvider = (props) =>{
-    const [isDarkTheme, setIsDarkTheme] = useState(true)
+    const [isDarkTheme, setIsDarkTheme] = useState(false)
     const toggleTheme = () => setIsDarkTheme(prev => (!prev))
     const [page, setPage] = useState ('home')
     const [interludeId, setInterludeId] = useState()
