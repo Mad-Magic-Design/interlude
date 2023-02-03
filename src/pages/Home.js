@@ -16,7 +16,7 @@ export default function Home(props) {
   return (
     <>
     <TopBar isDarkTheme={props.isDarkTheme} toggleTheme={props.toggleTheme}/>
-    <Box sx={{p:2}}>
+    <Box component='article' sx={{p:2}}>
       <Container sx={{}}>
           <Routes>
               <Route path='/' element={<InterludeMenu/>}/>

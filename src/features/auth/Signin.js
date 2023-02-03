@@ -64,6 +64,7 @@ export default function Signin() {
               label="I'm a human (elves and dwarves good too)"
             />
             <Button
+              aria-label="Submit Sign In"
               type="submit"
               fullWidth
               variant="contained"

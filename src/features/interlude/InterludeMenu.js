@@ -90,18 +90,18 @@ export default function InterludeMenu() {
         <>
         {userDoc.createdInterludes.map((interlude, i)=>
          <>
-         <Button key={i} onClick={()=>handleDeleteClick(interlude, true)} sx={{backgroundColor:'primary.light', mb:1, boxShadow: 9}} fullWidth >{<DeleteIcon/>}  {interlude.title}</Button>
+         <Button aria-label="delete Interlude" key={i} onClick={()=>handleDeleteClick(interlude, true)} sx={{backgroundColor:'primary.light', mb:1, boxShadow: 9}} fullWidth >{<DeleteIcon/>}  {interlude.title}</Button>
          </>
          )}
         {userDoc.joinedInterludes.map((interlude, i)=>
-         <Button key={i} onClick={()=>handleDeleteClick(interlude, false)} sx={{backgroundColor:'primary.dark', mb:1 , boxShadow: 9}} fullWidth>{<DeleteIcon/>}  {interlude.title}</Button>)}
+         <Button aria-label='delete Interlude' key={i} onClick={()=>handleDeleteClick(interlude, false)} sx={{backgroundColor:'primary.dark', mb:1 , boxShadow: 9}} fullWidth>{<DeleteIcon/>}  {interlude.title}</Button>)}
         </>
         :
         <>
         {userDoc.createdInterludes.map((interlude, i)=>
-         <Button key={i} onClick={()=>navigate(`/home/interlude/${interlude.id}`)} sx={{backgroundColor:'primary.light', mb:1, boxShadow: 3}} fullWidth>{interlude.title}</Button>)}
+         <Button aria-label='navigate to interlude' key={i} onClick={()=>navigate(`/home/interlude/${interlude.id}`)} sx={{backgroundColor:'primary.light', mb:1, boxShadow: 3}} fullWidth>{interlude.title}</Button>)}
         {userDoc.joinedInterludes.map((interlude, i)=>
-         <Button key={i} onClick={()=>navigate(`/home/interlude/${interlude.id}`)} sx={{backgroundColor:'primary.dark', mb:1, boxShadow: 3}} fullWidth>{interlude.title}</Button>)}
+         <Button aria-label='navigate to interlude' key={i} onClick={()=>navigate(`/home/interlude/${interlude.id}`)} sx={{backgroundColor:'primary.dark', mb:1, boxShadow: 3}} fullWidth>{interlude.title}</Button>)}
         </>
         }
       </Container>

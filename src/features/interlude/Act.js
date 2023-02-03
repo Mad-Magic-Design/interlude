@@ -41,7 +41,7 @@ export default function Act(props) {
   
 
   return (
-    <Container maxWidth='md' sx={{
+    <Container component='section' maxWidth='md' sx={{
       backgroundColor: 'background.paper',
       mt: 2,
       borderRadius: 2,

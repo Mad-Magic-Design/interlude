@@ -45,6 +45,7 @@ export default function JoinInterlude() {
               autoFocus
             />
             <Button
+              aria-label= "join interlude"
               type="submit"
               fullWidth
               variant="contained"

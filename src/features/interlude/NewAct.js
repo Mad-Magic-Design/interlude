@@ -22,6 +22,7 @@ export default function NewAct() {
        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
         
           <TextField
+          aria-label='input for an act'
           id='act'
           label='What is your act for this interlude?'
           name='act'
@@ -35,6 +36,7 @@ export default function NewAct() {
           
           />
         <Button
+              aria-label = 'submit act'
               type="submit"
               fullWidth
               variant="contained"

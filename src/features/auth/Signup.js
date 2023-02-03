@@ -75,6 +75,7 @@ export default function Signup() {
             />
             {errorMessage && <Typography variant="body2">{errorMessage}</Typography>}
             <Button
+              aria-label='Submit Sign Up'
               type="submit"
               fullWidth
               variant="contained"

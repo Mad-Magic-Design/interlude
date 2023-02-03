@@ -16,15 +16,16 @@ export default function Landing() {
   const [signInSelected, setSignInSelected] = useState(true)
   const {toggleTheme, isDarkTheme} = useContext(ThemeSettingsContext)
   return (
-    <Box>  
+    <Box component="article">  
       <Container 
+      component='header'
         sx={{
           mt:4,
           pb:2,
           borderRadius: 2,  
         }}
       >
-        <Container disableGutters sx={{
+        <Container component='figure' disableGutters sx={{
           display: 'flex',
           flexDirection: 'row-reverse',
         }} >
@@ -41,7 +42,8 @@ export default function Landing() {
         </Box>
         
       </Container>
-      <Container disableGutters component="main"  maxWidth="xs" sx={{
+      <Container disableGutters component="main"  maxWidth="xs" 
+      sx={{
       mt:4,
       backgroundColor: 'background.paper',
       display: 'flex',
@@ -57,6 +59,7 @@ export default function Landing() {
       justifyContent: 'center'
     }}>
           <Button fullWidth onClick={()=>setSignInSelected(true)}
+          aria-label="navigate to sign in"
           sx={signInSelected?
             {
               backgroundColor:'background.paper',
@@ -72,6 +75,7 @@ export default function Landing() {
            
           >Sign In</Button>
           <Button fullWidth onClick={()=>setSignInSelected(false)}
+          aria-label='navigate to sign p'
             sx={signInSelected?
               {
                 borderTopLeftRadius: 0,
